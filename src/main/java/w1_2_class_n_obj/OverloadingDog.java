@@ -72,6 +72,8 @@ public class OverloadingDog {
         OverloadingDog myDog3 = new OverloadingDog(5, "Buddy3", 3);
 
         myDog3.bark(3);
+
+        // DogForObject  -> 임포트 불필요 (패키지 내부)
     }
 
 }

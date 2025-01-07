@@ -5,14 +5,19 @@ public class DogForObject {
     public static final boolean fourLegged = true;
     public static final boolean mammal = true;
 
-    // 2. 생성자
+    // 2. 인스턴스 변수
+    public int age;
+    public float furLength;
+    public String name;
+
+    // 3. 생성자
     public DogForObject(int age, String name, float furLength) {
         this.age = age;
         this.name = name;
         this.furLength = furLength;
     }
 
-    // 3. Static 메서드
+    // 4. Static 메서드
     public static void dogInfo() {
         if (fourLegged) {
             System.out.println("Dog is four legged.");
@@ -21,11 +26,6 @@ public class DogForObject {
             System.out.println("Dog is mammal.");
         }
     }
-
-    // 4. 인스턴스 변수
-    public int age;
-    public float furLength;
-    public String name;
 
     // 5. 인스턴스 메서드
     public int getAge() {

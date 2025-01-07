@@ -1,13 +1,6 @@
 package w2_2_memorystructure;
 
 public class Cat {
-    // 생성자
-    public Cat(int age, float furLength, String name) {
-        this.age = age;
-        this.furLength = furLength;
-        this.name = name;
-    }
-
     // Static 변수
     public static final boolean fourLegged = true;
     public static final boolean mammal = true;
@@ -16,6 +9,13 @@ public class Cat {
     public int age;
     public float furLength;
     public String name;
+
+    // 생성자
+    public Cat(int age, float furLength, String name) {
+        this.age = age;
+        this.furLength = furLength;
+        this.name = name;
+    }
 
     // 인스턴스 메서드
     public int getAge() {
@@ -43,5 +43,13 @@ public class Cat {
         float catFurLength = myScottishFold.getFurLength();
         //
         String catName = myScottishFold.getName();
+
+        try {
+            myScottishFold.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
+
+        // abstract void absMethodInConcreteCls;
     }
 }

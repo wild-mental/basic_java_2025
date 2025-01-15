@@ -1,9 +1,12 @@
 package w2_13_inclass_adv_simulator;
 
+import java.util.Random;
+
 public class SatelliteTV extends AbstractTV
     // implements ISatelliteTVRC // 하위 클래스별 인터페이스 필요 시 생성
 {
     private String satelliteType;
+    private Random myRandom = new Random();
 
     public SatelliteTV(
         int channel, int volume,
@@ -24,7 +27,8 @@ public class SatelliteTV extends AbstractTV
     private int findSignal() {
         // 10 % 확률로 방송 신호가 없음
         // 0 ~ 100 사이의 값이 나오는 신호 강도 리턴
-        return (int)(Math.random() * 100);
+        // return (int)(Math.random() * 100);
+        return myRandom.nextInt(1, 100);
     }
 
     @Override

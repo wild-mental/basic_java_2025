@@ -1,9 +1,8 @@
 package w3_7_travelsystem;
 
-public class Citizen {  // TODO (2) : 인터페이스 구현 형태로 변경
+public class Citizen implements ITravelable {
     String personName;        // 이름
     Nation nationality;       // 국적
-    // TODO (3) : 무국적자에 대한 처리 일반 Person 으로 변경하고 계층화 (상속, 다형성)
     int gender;               // 1, 3 - 남성, 2, 4 - 여성 (%2 연산으로 처리 예정)
     boolean hasPassport;      // 여권
     boolean hasDoneMilitary;  // 병역
@@ -45,6 +44,7 @@ public class Citizen {  // TODO (2) : 인터페이스 구현 형태로 변경
         return hasCrimeRecord;
     }
 
+    // 외부에서 호출하는 용도로 구현하면 적절해 보임
     public void travelOrEmigration(
         Nation tgNation,
         String purpose  // 여행 목적을 enum 으로 처리하면 좋다!
@@ -55,6 +55,7 @@ public class Citizen {  // TODO (2) : 인터페이스 구현 형태로 변경
         // 는 개발자 선택
     }
 
+    @Override
     public void travel(Nation tgNation) {
         // 여행 대상국에서 검사 통과/차단 케이스에 따라서
         // 시민의 상태 변화 및 출력을 구현
@@ -70,6 +71,7 @@ public class Citizen {  // TODO (2) : 인터페이스 구현 형태로 변경
         }
     }
 
+    @Override
     public void emigration(Nation tgNation) {
         // 이민 대상국에서 검사 통과/차단 케이스에 따라서
         // 시민의 상태 변화 및 출력을 구현

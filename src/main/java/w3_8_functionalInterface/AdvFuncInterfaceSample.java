@@ -30,6 +30,16 @@ public class AdvFuncInterfaceSample {
         };
         System.out.println(division.operate(1, 0));
 
+        MyMathIntBinaryOperation customDivision = (a, b) -> {
+            // Mutable 변수가 연산에 개입하는 순간 함수형 프로그래밍을 달성할 수 없다
+            a += MyStaticClass.getMutableVar();
+
+            if (b == 0) {
+                throw new ArithmeticException("Cannot divide by zero");
+            }
+            return a / b;
+        };
+
         // 함수형 인터페이스가 프로그램에 적용됨으로써 구문은 동일하나,
         // 기본 "함수" 라는 성격과는 조금 다르게 간결화된 최소 형태가 존재함 : Runnable
         Runnable myRunnable = () -> System.out.println("Hello, World!");

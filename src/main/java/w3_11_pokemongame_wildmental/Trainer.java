@@ -1,4 +1,4 @@
-package w3_11_pokemongame;
+package w3_11_pokemongame_wildmental;
 
 import lombok.Getter;
 
@@ -75,5 +75,13 @@ public class Trainer implements ITrainer {
     @Override
     public Map<String, Pokemon> searchDex(PokeDex.PokeCategory category) {
         return PokeDex.searchPokemon(category);
+    }
+
+    public void crossOcean(String tgCity) {
+        for (Pokemon pokemon: this.getCapturedPokemonList()) {
+            if (pokemon instanceof IOceanCrossable) {
+                ((IOceanCrossable) pokemon).crossOcean(tgCity);
+            }
+        }
     }
 }

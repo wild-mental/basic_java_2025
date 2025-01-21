@@ -1,4 +1,4 @@
-package w3_11_pokemongame;
+package w3_11_pokemongame_wildmental;
 
 public class GameLauncher {
     public static void main(String[] args) {
@@ -12,5 +12,18 @@ public class GameLauncher {
 //        pokemon1 = evolvedPokemon1;
         // 2) evolve() 리턴타입 자체를 다형성 타입으로 핸들링
         pokemon1 = pokemon1.evolve();
+
+        // Scenario 1
+        // 트레이너 VS 야생포켓몬 전투
+        Trainer trainer1 = new Trainer();
+        Trainer trainer2 = new Trainer();
+        Pokemon pokemon2 = new Pokemon();
+        trainer1.hunt(pokemon1);
+        trainer2.hunt(pokemon2);
+
+        // Scenario 2
+        // 대륙 간 횡단
+        trainer1.crossOcean("태초마을");
+        trainer2.crossOcean("어둠시티");
     }
 }

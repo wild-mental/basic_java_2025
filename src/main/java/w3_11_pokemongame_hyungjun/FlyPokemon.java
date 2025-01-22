@@ -5,6 +5,10 @@ import lombok.Getter;
 @Getter
 public class FlyPokemon extends Pokemon implements IFlyable {
 
+    public FlyPokemon(String pokemonDexNumber) {
+        super(pokemonDexNumber);
+    }
+
     @Override
     public void fly(String tgCity) {
 

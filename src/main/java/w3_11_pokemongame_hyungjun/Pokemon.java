@@ -19,6 +19,10 @@ public class Pokemon implements IPokemon {
             // = null; (다음 진화형이 없는 경우)
 
     private PokeDex.PokeCategory category;
+
+    public Pokemon() {
+
+    }
     //희귀도에 따른 포켓몬 잡을 확률, 포켓몬 등급마다 잡을 확률이 다르게 해야 하기 때문에 생성
 
     @Override

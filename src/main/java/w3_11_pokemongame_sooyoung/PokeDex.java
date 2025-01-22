@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PokeDex {
+    private static Map<Integer, Pokemon> pokemonByNum = new HashMap<>();
     private static Map<String, Pokemon> pokemonByName = new HashMap<>();
     private static Map<PokeCategory, Map<String, Pokemon>> pokemonByCategory = new HashMap<>();
 

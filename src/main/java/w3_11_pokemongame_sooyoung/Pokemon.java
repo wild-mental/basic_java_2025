@@ -5,6 +5,7 @@ import lombok.Setter;
 
 @Getter
 public class Pokemon implements IPokemon {
+    private Integer pokeDexNum;
     private String pokemonName;
     // 추가된 setHP 메서드
     @Setter

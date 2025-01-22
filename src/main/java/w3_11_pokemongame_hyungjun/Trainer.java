@@ -67,7 +67,7 @@ public class Trainer implements ITrainer {
 
     @Override
     public Pokemon searchDex(String pokemonName) {
-    return PokeDex.searchPokemon(pokemonName);
+        return PokeDex.searchPokemon(pokemonName);
     }
 
     @Override

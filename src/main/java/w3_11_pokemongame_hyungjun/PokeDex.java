@@ -27,10 +27,7 @@ public class PokeDex {
         }
         // 포켓몬 생성자에서 도감 번호와 포켓몬 이름을 저장하는 생성자 만들어야댐.
         // 아래에 더미데이터 생성
-
-
-        pokemonByName.put("1", new Pokemon("1"));  // 맨 처음에 넣은 숫자는 도감 번호.(일껄)
-
+        pokemonByName.put("피카츄", new Pokemon("1", "피카츄", 10, 1, PokeCategory.ELECTRIC, 10));  // 맨 처음에 넣은 숫자는 도감 번호.(일껄)
     }
     public static void addPokemon(Pokemon pokemon) { // 포켓몬을 카테고리에 추가하는 메서드 (포켓몬 이름, 포켓몬 객체 추가)
         // pokemonByName에 추가

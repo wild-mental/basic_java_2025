@@ -3,11 +3,12 @@ package w3_11_pokemongame_hyungjun;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@Getter @Setter
+@Getter @Setter @ToString
 public class Pokemon implements IPokemon {
     private String pokemonDexNumber;
     private String pokemonName;// 포켓몬 이름

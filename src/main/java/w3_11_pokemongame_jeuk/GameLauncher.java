@@ -1,8 +1,8 @@
-package pokemonGame_jeuk;
+package w3_11_pokemongame_jeuk;
 
 import java.util.*;
 
-import static pokemonGame_jeuk.PokeDex.PokemonByName;
+import static w3_11_pokemongame_jeuk.PokeDex.PokemonByName;
 
 public class GameLauncher {
     //야생 포켓몬 더미데이터

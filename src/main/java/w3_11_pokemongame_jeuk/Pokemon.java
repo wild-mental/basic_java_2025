@@ -1,4 +1,4 @@
-package pokemonGame_jeuk;
+package w3_11_pokemongame_jeuk;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -6,7 +6,7 @@ import lombok.Setter;
 import java.util.HashMap;
 import java.util.Map;
 
-import static pokemonGame_jeuk.PokeDex.PokemonByName;
+import static w3_11_pokemongame_jeuk.PokeDex.PokemonByName;
 
 
 @Getter

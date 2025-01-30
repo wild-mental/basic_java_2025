@@ -1,7 +1,4 @@
-package pokemonGame_jeuk;
-
-import java.util.ArrayList;
-import java.util.List;
+package w3_11_pokemongame_jeuk;
 
 public interface IOceanCrossable {
 

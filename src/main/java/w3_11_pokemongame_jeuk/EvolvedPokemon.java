@@ -1,6 +1,4 @@
-package pokemonGame_jeuk;
-
-import lombok.Getter;
+package w3_11_pokemongame_jeuk;
 
 class EvolvedPokemon extends Pokemon {
     public EvolvedPokemon(String category, int HP, int LV, int AP, int Defence, String pokemonName) {

@@ -1,4 +1,4 @@
-package pokemonGame_jeuk;
+package w3_11_pokemongame_jeuk;
 
 
 import java.util.*;

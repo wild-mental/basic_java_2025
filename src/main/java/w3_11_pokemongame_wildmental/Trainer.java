@@ -80,8 +80,6 @@ public class Trainer implements ITrainer {
     @Override
     public void trade(Trainer tgTrainer) {
         System.out.println("포켓몬 트레이드를 시작합니다!");
-        // TODO : 트레이딩 로직 흐름 구현
-
         // 1) 소지 포켓몬 옵션 출력 및 선택
         // 내 포켓몬
         int idx = 0;
@@ -121,9 +119,16 @@ public class Trainer implements ITrainer {
             "\t\t" + tgTrainer.capturedPokemonList
         );
 
-        // 4) 교환 후 이벤트 발생
+        // 4) MysticPokemon 한정 교환 후 이벤트 발생
         //    TODO : 교환 후에 특별한 액션의 주체가 되는 mysticPokemon 에 동작 구현
-        // mysticPokemon.getMysticAction.trigger();
+        if (tgPickedPokemon instanceof MysticPokemon myMysticPokemon) {
+            System.out.println("트레이딩의 결과 신비의 포켓몬 " + myMysticPokemon.getPokemonName() + "이 반응합니다!");
+            myMysticPokemon.getMysticAction().triggerMysticAction();
+        }
+        if (myPickedPokemon instanceof MysticPokemon tgMysticPokemon) {
+            System.out.println("트레이딩의 결과 신비의 포켓몬 " + tgMysticPokemon.getPokemonName() + "이 반응합니다!");
+            tgMysticPokemon.getMysticAction().triggerMysticAction();
+        }
     }
 
     public void crossOcean(String tgCity) {

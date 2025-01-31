@@ -110,25 +110,28 @@ public class Trainer implements ITrainer {
         // 3) 교환 수행
         tgTrainer.capturedPokemonList.set(tgPokemonPickIdx, myPickedPokemon);
         this.capturedPokemonList.set(myPokemonPickIdx, tgPickedPokemon);
-        // 교환 후 결과 출력
-        System.out.println(
-            "교환 결과:\n" +
-            "\t내 포켓몬:\n" +
-            "\t\t" + this.capturedPokemonList + "\n" +
-            "\t상대 포켓몬:\n" +
-            "\t\t" + tgTrainer.capturedPokemonList
-        );
 
         // 4) MysticPokemon 한정 교환 후 이벤트 발생
-        //    TODO : 교환 후에 특별한 액션의 주체가 되는 mysticPokemon 에 동작 구현
+        Pokemon result = null;
         if (tgPickedPokemon instanceof MysticPokemon myMysticPokemon) {
             System.out.println("트레이딩의 결과 신비의 포켓몬 " + myMysticPokemon.getPokemonName() + "이 반응합니다!");
-            myMysticPokemon.getMysticAction().triggerMysticAction();
+            result = myMysticPokemon.getMysticAction().triggerMysticAction(myMysticPokemon);
+            this.capturedPokemonList.set(myPokemonPickIdx, result);
         }
         if (myPickedPokemon instanceof MysticPokemon tgMysticPokemon) {
             System.out.println("트레이딩의 결과 신비의 포켓몬 " + tgMysticPokemon.getPokemonName() + "이 반응합니다!");
-            tgMysticPokemon.getMysticAction().triggerMysticAction();
+            result = tgMysticPokemon.getMysticAction().triggerMysticAction(tgMysticPokemon);
+            tgTrainer.capturedPokemonList.set(tgPokemonPickIdx, result);
         }
+
+        // 5) 교환 후 결과 출력
+        System.out.println(
+            "교환 결과:\n" +
+                "\t내 포켓몬:\n" +
+                "\t\t" + this.capturedPokemonList + "\n" +
+                "\t상대 포켓몬:\n" +
+                "\t\t" + tgTrainer.capturedPokemonList
+        );
     }
 
     public void crossOcean(String tgCity) {

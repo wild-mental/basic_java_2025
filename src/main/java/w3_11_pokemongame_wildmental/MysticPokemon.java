@@ -2,14 +2,16 @@ package w3_11_pokemongame_wildmental;
 
 import lombok.Getter;
 
-@Getter
+import java.util.Random;
+
 public class MysticPokemon extends Pokemon {
     // 트레이드 되었는가?
     // -> 비동기 처리 등
     // 트레이드 즉시 수행할 수 있는 동작
 
     // 1) 필드 추가
-    // Mystic 이기 때문에 가지고 있는 속성을 넣어주자!
+    // Mystic 이기 때문에 가지고 있는 속성을 넣어주자! // 주사위 눈을 하나 가진다!
+    private final int mysticFactor = new Random().nextInt(1, 7);
     // 2) 메서드 추가
     @Getter
     private IMysticActionable mysticAction;
@@ -26,8 +28,6 @@ public class MysticPokemon extends Pokemon {
         this.mysticAction = PokeDex.mysticActionDex.get(pokemonName);
     }
 
-    // TODO : 교환 시 특별한 동작 구현!
-    //   -> 함수형 인터페이스로 구현하기!
     @FunctionalInterface
     public interface IMysticActionable {
         Pokemon triggerMysticAction(MysticPokemon mysticPokemon);
@@ -37,17 +37,26 @@ public class MysticPokemon extends Pokemon {
 
     // Mystic Action 유형 1  (인스턴스 멤버 참조)
     public Pokemon mysticEvolve() {
+        int diceValueForEvent = new Random().nextInt(1, 7);
+        if (diceValueForEvent != mysticFactor) {
+            System.out.println(this.getPokemonName()+ "의 Mystic Action 진화가 실패했습니다!: " + diceValueForEvent);
+            return this;  // 진화 안한 객체 그대로 리턴
+        }
         // 인스턴스 메서드이기 때문에 반드시 기준 인스턴스 파라미터가 존재하는 경우에만 호출 가능
         // 인스턴스 참조를 포함하는 로직 구현 가능
-        System.out.println(this.getPokemonName()+ "의 Mystic Action 으로 진화가 일어납니다!");
+        System.out.println(this.getPokemonName()+ "의 Mystic Action 으로 진화가 일어납니다!: " + diceValueForEvent);
         // 상속구조 등을 통한 this, super 기반 메서드 호출 가능
         return this.evolve();
     }
 
     public Pokemon mysticTransform() {
-        System.out.println(this.getPokemonName()+ "의 Mystic Action 으로 변형이 일어납니다!");
+        int diceValueForEvent = new Random().nextInt(1, 7);
+        if (diceValueForEvent != mysticFactor) {
+            System.out.println(this.getPokemonName()+ "의 Mystic Action 변형이 실패했습니다!: " + diceValueForEvent);
+            return this;  // 변형 안한 객체 그대로 리턴
+        }
+        System.out.println(this.getPokemonName()+ "의 Mystic Action 으로 변형이 일어납니다!: " + diceValueForEvent);
         return new LegendPokemon(
-            // TODO: 전설 포켓몬은 특수한 처리 추가 구현 필요
             this.getPokemonName(), this.getCustomName(), this.getHP(),
             PokeDex.PokeCategory.LEGENDARY
         );

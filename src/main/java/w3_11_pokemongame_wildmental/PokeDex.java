@@ -1,6 +1,5 @@
 package w3_11_pokemongame_wildmental;
 
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,25 +7,34 @@ public class PokeDex {
     // 포켓몬 정보 관리할 데이터 타입 필드 추가
     static Map<String, Pokemon> pokemonByName = new HashMap<>();
     static Map<PokeCategory, Map<String, Pokemon>> pokemonByCategory = new HashMap<>();
+    // 진화형 검색용 인덱스 Map
+    static Map<String, String> evolveMap = new HashMap<>();
 
     static {
-        // 3. 포켓몬 사전 더미데이터 생성
+        // 달 포켓몬 & 진화형 더미데이터 생성
         // 모든 PokeCategory 값을 키로 하여 내부 Map 을 초기화
+        Pokemon[] pokemons = {
+            // 생성하고자 하는 포켓몬을 여기에 new 로 얼마든지 추가 가능
+
+        };
+
         for (PokeCategory category : PokeCategory.values()) {
-            pokemonByCategory.put(category, new HashMap<>());
+            pokemonByCategory.put(category, new HashMap<>());  // 세부 카테고리에 대한 해시맵 초기화
         }
-        // 아래에 더미데이터 생성 (매 객체 생성 시 해당 객체로 pokemonByName, pokemonByCategory 둘 다 업데이트 해야 함)
-        Pokemon p1 = new Pokemon();
-        Pokemon p2 = new Pokemon();
-        Pokemon p3 = new Pokemon();
-        // 위 변수들은 리스트로 변경,
-        // 아래 구문들을 반복문으로 변경
-        pokemonByName.put("1", p1);
-        pokemonByCategory.get(PokeCategory.WATER).put(p1.getPokemonName(), p1);
-        pokemonByName.put("2", p2);
-        pokemonByCategory.get(PokeCategory.WATER).put(p2.getPokemonName(), p2);
-        pokemonByName.put("3", p3);
-        pokemonByCategory.get(PokeCategory.WATER).put(p3.getPokemonName(), p3);
+
+        for (Pokemon pokemon : pokemons) {
+            // 위 생성 포켓몬을 적절한 사전 데이터 색인으로 할당
+            pokemonByName.put(pokemon.getPokemonName(), pokemon);
+            pokemonByCategory.get(pokemon.getPokeCategory()).put(pokemon.getPokemonName(), pokemon);
+        }
+
+        evolveMap.put("삐삐", "픽시");
+        evolveMap.put("푸린", "푸크린");
+    }
+
+    public static EvolvedPokemon getEvolveForm(String currentForm) {
+        String evolveTo = evolveMap.get(currentForm);
+        return (EvolvedPokemon) pokemonByName.get(evolveTo);
     }
 
     public enum PokeCategory {

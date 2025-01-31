@@ -11,4 +11,6 @@ public class MysticPokemon extends Pokemon {
     public MysticPokemon(String pokemonName, String customName, int HP, PokeDex.PokeCategory pokeCategory) {
         super(pokemonName, customName, HP, pokeCategory);
     }
+
+    // TODO : 교환 시 특별한 동작 구현!
 }

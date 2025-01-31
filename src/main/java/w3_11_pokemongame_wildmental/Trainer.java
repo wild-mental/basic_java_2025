@@ -81,10 +81,49 @@ public class Trainer implements ITrainer {
     public void trade(Trainer tgTrainer) {
         System.out.println("포켓몬 트레이드를 시작합니다!");
         // TODO : 트레이딩 로직 흐름 구현
-        // 1) 소지 포켓몬 옵션 출력
-        // 2) 선택
+
+        // 1) 소지 포켓몬 옵션 출력 및 선택
+        // 내 포켓몬
+        int idx = 0;
+        for (Pokemon pokemon: this.getCapturedPokemonList()) {
+            System.out.println(idx + ": " + pokemon);
+            idx++;
+        }
+        System.out.print("교환할 내 포켓몬을 선택하세요:");
+        int myPokemonPickIdx = inputReader.nextInt();
+        Pokemon myPickedPokemon = this.capturedPokemonList.get(myPokemonPickIdx);
+
+        // 상대 포켓몬
+        idx = 0;
+        for (Pokemon pokemon: tgTrainer.getCapturedPokemonList()) {
+            System.out.println(idx + ": " + pokemon);
+            idx++;
+        }
+        System.out.print("교환할 상대 포켓몬을 선택하세요:");
+        int tgPokemonPickIdx = inputReader.nextInt();
+        Pokemon tgPickedPokemon = tgTrainer.capturedPokemonList.get(tgPokemonPickIdx);
+
+        // 2) 교환 대상 포켓몬 확인 출력
+        System.out.println(
+            "내 포켓몬 " + myPickedPokemon + " 과\n" +
+            "상대 포켓몬 " + tgPickedPokemon + " 을 교환합니다!"
+        );
+
         // 3) 교환 수행
+        tgTrainer.capturedPokemonList.set(tgPokemonPickIdx, myPickedPokemon);
+        this.capturedPokemonList.set(myPokemonPickIdx, tgPickedPokemon);
+        // 교환 후 결과 출력
+        System.out.println(
+            "교환 결과:\n" +
+            "\t내 포켓몬:\n" +
+            "\t\t" + this.capturedPokemonList + "\n" +
+            "\t상대 포켓몬:\n" +
+            "\t\t" + tgTrainer.capturedPokemonList
+        );
+
         // 4) 교환 후 이벤트 발생
+        //    TODO : 교환 후에 특별한 액션의 주체가 되는 mysticPokemon 에 동작 구현
+        // mysticPokemon.getMysticAction.trigger();
     }
 
     public void crossOcean(String tgCity) {
@@ -93,5 +132,9 @@ public class Trainer implements ITrainer {
                 ((IOceanCrossable) pokemon).crossOcean(tgCity);
             }
         }
+    }
+
+    public void getPokemon(Pokemon[] trainer1Pokemon) {
+        capturedPokemonList.addAll(Arrays.asList(trainer1Pokemon));
     }
 }

@@ -56,9 +56,24 @@ public class MysticPokemon extends Pokemon {
             return this;  // 변형 안한 객체 그대로 리턴
         }
         System.out.println(this.getPokemonName()+ "의 Mystic Action 으로 변형이 일어납니다!: " + diceValueForEvent);
-        return new LegendPokemon(
-            this.getPokemonName(), this.getCustomName(), this.getHP(),
-            PokeDex.PokeCategory.LEGENDARY
-        );
+
+        // 생성자 호출이 반드시 한 번만 유효하게 일어날 것을 보장해야 한다
+        //   ->
+        //   생성자 호출을 외부에서 수행하는 것을 금지하고,
+        //   한번 수행되고 나면 실패하게 만드는 내부 로직을 구현해야 한다.
+//        return new LegendPokemon(
+//            this.getPokemonName(), this.getCustomName(), this.getHP(),
+//            PokeDex.PokeCategory.LEGENDARY
+//        );
+
+        // 외부에서 생성자를 호출하는 대신, 아래와 같이 정해진 getLegend 방식으로만 Legend 객체를 얻을 수 있다!
+        // Singleton 패턴을 구현한 결과가 됨
+        String transformTo = "";
+        LegendPokemon newLegend = LegendPokemon.getLegend(transformTo);
+        if (newLegend == null) {
+            return this;
+        }
+        newLegend.setCustomName(this.getCustomName());
+        return newLegend;
     }
 }

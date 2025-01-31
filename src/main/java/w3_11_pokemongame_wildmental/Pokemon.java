@@ -1,12 +1,14 @@
 package w3_11_pokemongame_wildmental;
 
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 @Getter
 @ToString
 public class Pokemon implements IPokemon {
     private String pokemonName;  // 포켓몬의 종류 이름
+    @Setter
     private String customName;
     private int HP;
     private PokeDex.PokeCategory pokeCategory;

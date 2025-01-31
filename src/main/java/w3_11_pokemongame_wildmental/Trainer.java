@@ -77,6 +77,16 @@ public class Trainer implements ITrainer {
         return PokeDex.searchPokemon(category);
     }
 
+    @Override
+    public void trade(Trainer tgTrainer) {
+        System.out.println("포켓몬 트레이드를 시작합니다!");
+        // TODO : 트레이딩 로직 흐름 구현
+        // 1) 소지 포켓몬 옵션 출력
+        // 2) 선택
+        // 3) 교환 수행
+        // 4) 교환 후 이벤트 발생
+    }
+
     public void crossOcean(String tgCity) {
         for (Pokemon pokemon: this.getCapturedPokemonList()) {
             if (pokemon instanceof IOceanCrossable) {

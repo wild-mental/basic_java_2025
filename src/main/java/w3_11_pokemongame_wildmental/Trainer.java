@@ -97,12 +97,55 @@ public class Trainer implements ITrainer {
         return PokeDex.searchPokemon(category);
     }
 
+    @Override
+    public void townMove(PokeTown tgTown) {
+        // 기존위치인지 확인
+        if (tgTown.equals(currentLocation)) {
+            System.out.println("현재 위치입니다: " + currentLocation.getName());
+            return;
+        }
+        boolean moveSuccess = false;
+        if (tgTown.isWalkable()) {
+            walk(tgTown);
+            moveSuccess = true;
+        } else {
+            moveSuccess = crossOcean(tgTown);
+        }
+        if (moveSuccess) {
+            tgTown.townEvent();  // 환영 메시지
+            PokeTown.ITownEvent townEvent = tgTown.getTownEvent();
+            if (townEvent != null) {
+                townEvent.triggerTownEvent(this);  // 마을별 이벤트
+            }
+        }
+    }
+
+    // fly/surf 와 같은 동등한 이동 층위에서 호출하도록 구현
+    public void walk(PokeTown tgTown) {
+        this.currentLocation = tgTown;
+        System.out.println("Walk to: " + tgTown.getName());
+        // TODO : 마을의 특별한 이벤트 Trigger
+    }
+
     public void crossOcean(String tgCity) {
         for (Pokemon pokemon: this.getCapturedPokemonList()) {
             if (pokemon instanceof IOceanCrossable) {
                 ((IOceanCrossable) pokemon).crossOcean(tgCity);
             }
         }
+    }
+
+    public boolean crossOcean(PokeTown tgTown) {
+        this.currentLocation = tgTown;
+        for (Pokemon pokemon: this.getCapturedPokemonList()) {
+            if (pokemon instanceof IOceanCrossable) {
+                ((IOceanCrossable) pokemon).crossOcean(tgTown);
+                // out : surf to~, fly to~
+                return true;
+            }
+        }
+        System.out.println("바다를 건널 수 있는 포켓몬이 없습니다.");
+        return false;
     }
 
     @Override

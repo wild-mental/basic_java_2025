@@ -1,6 +1,5 @@
 package w3_11_pokemongame_wildmental;
 
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,6 +9,8 @@ public class PokeDex {
     static Map<String, Pokemon> pokemonByName = new HashMap<>();
     // 카테고리를 거쳐서 이름 검색 시
     static Map<PokeCategory, Map<String, Pokemon>> pokemonByCategory = new HashMap<>();
+    // 진화형 검색용 인덱스 Map
+    static Map<String, String> evolveMap = new HashMap<>();
 
     static {
         // 달 포켓몬 & 진화형 더미데이터 생성
@@ -33,6 +34,14 @@ public class PokeDex {
             pokemonByName.put(pokemon.getPokemonName(), pokemon);
             pokemonByCategory.get(pokemon.getPokeCategory()).put(pokemon.getPokemonName(), pokemon);
         }
+
+        evolveMap.put("삐삐", "픽시");
+        evolveMap.put("푸린", "푸크린");
+    }
+
+    public static EvolvedPokemon getEvolveForm(String currentForm) {
+        String evolveTo = evolveMap.get(currentForm);
+        return (EvolvedPokemon) pokemonByName.get(evolveTo);
     }
 
     public enum PokeCategory {

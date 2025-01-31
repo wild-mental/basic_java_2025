@@ -44,14 +44,10 @@ public class Pokemon implements IPokemon {
     @Override
     public Pokemon evolve() {
         // 데이터 및 동작
-        // : this.getLevel()
-        // : this.setters()
-        // 기존 객체 참조 삭제
-        // 진화된 객체 생성 및 리턴
-        // return new EvolvedPokemon();
-        return null;
-        // 리턴 타입은 부모 타입으로 선언되어 있는데
-        // 실제 리턴 객체는 자식 타입으로 반환
-        // => 다형성에 따른 부모 타입으로의 변환
+        EvolvedPokemon evolveTo = PokeDex.getEvolveForm(this.pokemonName);
+        System.out.println("== Evolve To: " + evolveTo.getPokemonName() + " ==");
+        return new EvolvedPokemon(
+            evolveTo.getPokemonName(), this.customName, evolveTo.getHP(), evolveTo.getPokeCategory()
+        );
     }
 }

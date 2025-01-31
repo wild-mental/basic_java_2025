@@ -9,4 +9,6 @@ public interface ITrainer {
     void battle(Pokemon wildPokemon);
     Pokemon searchDex(String pokemonName);
     Map<String, Pokemon> searchDex(PokeDex.PokeCategory category);
+
+    void townMove(PokeTown tgTown);
 }

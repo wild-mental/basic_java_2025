@@ -1,14 +1,34 @@
 package w3_11_pokemongame_wildmental;
 
 import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.util.*;
 
 @Getter
+//@ToString
 public class Trainer implements ITrainer {
-    List<Pokemon> capturedPokemonList = new ArrayList<>();
-    Map<String, Pokemon> capturedPokemonByName = new HashMap<>();
     Scanner inputReader = new Scanner(System.in);
+    private List<Pokemon> capturedPokemonList = new ArrayList<>();
+    private Map<String, Pokemon> capturedPokemonByName = new HashMap<>();
+
+    private String name;
+    @Setter
+    private PokeTown currentLocation;
+
+    public Trainer(String name, PokeTown currentLocation) {
+        this.name = name;
+        this.currentLocation = currentLocation;
+    }
+
+    public void getPokemon(Pokemon pokemon) {
+        capturedPokemonList.add(pokemon);
+    }
+
+    public void getPokemon(Pokemon[] pokemon) {
+        capturedPokemonList.addAll(Arrays.asList(pokemon));
+    }
 
     @Override
     public void hunt(Pokemon wildPokemon) {
@@ -83,5 +103,12 @@ public class Trainer implements ITrainer {
                 ((IOceanCrossable) pokemon).crossOcean(tgCity);
             }
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Trainer : " + name + '\n' +
+            "currentLocation=" + currentLocation + '\n' +
+            "capturedPokemonList=" + '\n' + capturedPokemonList;
     }
 }

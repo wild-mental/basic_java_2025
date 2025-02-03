@@ -169,4 +169,8 @@ public class Trainer<POKEMON_TYPE extends Pokemon> implements ITrainer<POKEMON_T
     public void getPokemon(POKEMON_TYPE[] trainer1Pokemon) {
         capturedPokemonList.addAll(Arrays.asList(trainer1Pokemon));
     }
+
+    public void getPokemon(POKEMON_TYPE newPokemon) {
+        capturedPokemonList.add(newPokemon);
+    }
 }

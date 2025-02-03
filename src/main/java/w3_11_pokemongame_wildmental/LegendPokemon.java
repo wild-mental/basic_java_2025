@@ -13,6 +13,10 @@ public class LegendPokemon extends Pokemon {
         super(pokemonName, HP, pokeCategory);
     }
 
+    public static LegendPokemon getDexLegend(String pokemonName, int HP, PokeDex.PokeCategory pokeCategory) {
+        return new LegendPokemon(pokemonName, HP, pokeCategory);
+    }
+
 //    public LegendPokemon(String pokemonName, String customName, int HP, PokeDex.PokeCategory pokeCategory) {
 //        super(pokemonName, customName, HP, pokeCategory);
 //    }

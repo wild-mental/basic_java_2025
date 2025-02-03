@@ -19,6 +19,7 @@ public class PokeDex {
             new MysticPokemon("근육몬", 10, PokeDex.PokeCategory.MYSTIC),
             new EvolvedPokemon("괴력몬", 100, PokeCategory.NORMAL),
             new MysticPokemon("킹스톤", 10, PokeDex.PokeCategory.MYSTIC),
+            LegendPokemon.getDexLegend("전설의킹스톤", 100, PokeCategory.LEGENDARY),
         };
 
         for (PokeCategory category : PokeCategory.values()) {

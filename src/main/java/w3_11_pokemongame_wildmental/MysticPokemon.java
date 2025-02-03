@@ -51,10 +51,10 @@ public class MysticPokemon extends Pokemon {
 
     public Pokemon mysticTransform() {
         int diceValueForEvent = new Random().nextInt(1, 7);
-        if (diceValueForEvent != mysticFactor) {
-            System.out.println(this.getPokemonName()+ "의 Mystic Action 변형이 실패했습니다!: " + diceValueForEvent);
-            return this;  // 변형 안한 객체 그대로 리턴
-        }
+//        if (diceValueForEvent != mysticFactor) {
+//            System.out.println(this.getPokemonName()+ "의 Mystic Action 변형이 실패했습니다!: " + diceValueForEvent);
+//            return this;  // 변형 안한 객체 그대로 리턴
+//        }
         System.out.println(this.getPokemonName()+ "의 Mystic Action 으로 변형이 일어납니다!: " + diceValueForEvent);
 
         // 생성자 호출이 반드시 한 번만 유효하게 일어날 것을 보장해야 한다
@@ -68,7 +68,7 @@ public class MysticPokemon extends Pokemon {
 
         // 외부에서 생성자를 호출하는 대신, 아래와 같이 정해진 getLegend 방식으로만 Legend 객체를 얻을 수 있다!
         // Singleton 패턴을 구현한 결과가 됨
-        String transformTo = "";
+        String transformTo = "전설의킹스톤";
         LegendPokemon newLegend = LegendPokemon.getLegend(transformTo);
         if (newLegend == null) {
             return this;
